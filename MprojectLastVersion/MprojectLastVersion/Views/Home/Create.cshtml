@@ -1,0 +1,105 @@
+﻿@model MprojectLastVersion.DataDB.DoubleModel
+
+<h4>Campaign</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Name</label>
+                <input name="Name" class="form-control" />
+                <span  class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label  class="control-label">Subject</label>
+                <input name="subject" class="form-control" />
+                <span  class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label  class="control-label">Creator Name</label>
+                <input name="fromname" class="form-control" />
+                <span  class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label  class="control-label">Creator EmailAddress</label>
+                <input name="fromemailaddress" class="form-control" />
+                <span  class="text-danger"></span>
+            </div>
+              <div class="form-group">
+                <label  class="control-label">Content</label>
+                <input name="content" class="form-control" />
+                <span  class="text-danger"></span>
+            </div>
+              <div class="form-group">
+                <label  class="control-label">Mail Send Address</label>
+                <input name="mailsendaddress" class="form-control" />
+                <span  class="text-danger"></span>
+            </div>
+          
+         
+         
+           
+                <div>
+                <label class="form-check-label">
+              
+
+                     <input  type="text" id="txt" name="mod" readonly="readonly" />
+                    
+                <select name="durum",new onchange="selectedtext(this)" class="form-control">
+                    <option >Durum Seçiniz</option>
+                     <option value="1">ACTIVE</option>
+                      <option value="0">PASSIVE</option>
+                </select>
+                 <script>
+                function selectedtext(ddlitem)
+                
+                {
+                    var selvalue=ddlitem.value;
+                    var seltext=ddlitem.options[ddlitem.selectedIndex].innerHTML;
+                    $('#txt').val(seltext);
+                  
+                }
+                </script>
+                </label>
+            </div>
+            <div class="form-group">
+                 <input type="text" id="grupisim" name="seciligroup" readonly="readonly" placeholder="Selected Group" />
+                      
+                        <select name="Seçilen"   ,new onchange="selectedtext1(this)" class="form-control" >
+                        <option value="0">Selected Group</option>
+              @foreach (var item2 in Model.Mgroup)
+                    {
+                        <option value="@item2.Id">@item2.Name</option>
+                    }
+                </select>
+                <script>
+                function selectedtext1(ddlitem1)
+                
+                {
+                    var selvalue1=ddlitem1.value;
+                    var seltext1=ddlitem1.options[ddlitem1.selectedIndex].innerHTML;
+                   $('#grupisim').val(seltext1);
+                   
+                }
+                </script>
+
+
+
+                </div>
+                
+          
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+   
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
